@@ -83,6 +83,34 @@
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="service.html" class="nav-item nav-link">Service</a>
                         <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+                        @if(Route::has('login'))
+                        @auth
+                            @if(Auth::user()->utype==='ADM')
+                                <li class="login-form"> <a href="#" title="Register">My Account ({{Auth::user()->name}})</a>
+                                    <ul class="drop-down one-column hover-fade">
+                                        <li><a href="#">Dashboard</a></li>
+                                        <li><a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li class="login-form"> <a href="#" title="Register">My Account ({{Auth::user()->name}})</a>
+                                    <ul class="drop-down one-column hover-fade">
+                                        <li><a href="#">Profile Update</a></li>
+                                        <li><a href="#">Change Password</a></li>
+                                        <li><a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                                    </ul>
+                                </li>
+                            @endif
+                            <!-- Create a logout form -->
+                            <form id="logout-form" method="POST" action="{{route('logout')}}" style="display: none">
+                                @csrf
+                            </form>
+                        @else
+                            <li class="login-form"> <a href="{{route('register')}}" title="Register">Register</a></li>
+                            &nbsp; &nbsp;
+                            <li class="login-form"> <a href="{{route('login')}}" title="Login">Login</a></li>
+                        @endif
+                    @endif
                     </div>
                 </div>
             </nav>
@@ -122,8 +150,8 @@
                         <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">About Us</h5>
                         <h1 class="display-4">Best Futsal online booking </h1>
                     </div>
-                    <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore. Amet erat amet et magna</p>
-                    <p>Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod, dolores takimata consetetur invidunt magna dolores aliquyam dolores dolore. Amet erat amet et magna</p>
+                    <p> Best Futsal is an online booking platform that offers top-quality futsal courts for players and teams of all levels. The facility provides high-quality courts that meet international standards, along with other amenities such as comfortable changing rooms and a lounge area. Best Futsal also offers coaching and training services to help players improve their skills. The online booking platform makes it easy for customers to browse available courts, select their preferred time and date, and pay securely online. Best Futsal is the perfect destination for futsal enthusiasts looking for a convenient and enjoyable playing experience.</p>
+                    
                 </div>
             </div>
         </div>
