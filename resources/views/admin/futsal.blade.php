@@ -1,11 +1,37 @@
 @extends('admin.layouts.admin-dash-layout')
 
 @section('content')
+<style>
+        nav svg {
+            height: 20px;
+        }
+        nav .hidden {
+            display: block !important;
+        }
+        .sclist{
+            list-style:none;
+        }
+        .sclist li{
+            line-height: 33px;
+            border-bottom: 1px solid #ccc;
+        }
+        .slink i{
+            font-size:17px;
+            margin-left: 13px;
+        }
+    </style>
+<div><h1 class="text-center">Manage Futsal</h1></div>
+<div class="pull-right mb-2">
+    <a class="btn btn-success" href="{{route('futsal.create')}}">Create</a>
+</div>
 
-<h1 class="text-center">Manage Futsal</h1>
 <br>
 
-
+@if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
 <div class="container">
     <div class="row">
         <div class="col-md-12" style="display:flex">
@@ -28,9 +54,9 @@
                                 <td>{{ $f->price }}</td>
                                 <td>{{ $f->description }}</td>
                                 <td>{{ $f->image }}</td>
-                                <td><a href="#" class="btn btn-primary">Edit</a></td>
+                                <td><a href="{{route('futsal.edit', $f->id)}}" class="btn btn-primary">Edit</a></td>
                                 <td>
-                                    <form action="" method="POST">
+                                    <form action="{{route('futsal.destroy', $f->id)}}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -40,7 +66,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                
         </div>
+        {{$futsal->links()}}
     </div>
 </div>
 @endsection

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FutsalController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ route::get('/',[HomeController::class, 'index']);
 
 Route::prefix('admin')->middleware(['auth', 'verified', 'isAdmin'])->group(function(){
     Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
-    Route::get('/futsal', [FutsalController::class,'index'])->name('futsal');
+    Route::resource('/futsal', FutsalController::class);
+    Route::get('/users', [UserController::class, 'index'])->name('userlist');
 });
 
 // Route::get('/dashboard', function () {

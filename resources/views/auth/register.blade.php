@@ -141,7 +141,7 @@ button{
     </div>
     <form  method="POST" action="{{ route('register') }}">
         @csrf
-        <h3>Login Here</h3>
+        <h3>Register Here</h3>
 
         <label for="name">Name</label>
         <input type="text"  id="name" placeholder="Enter Your Name" name="name" value="{{old('name')}}" required>
@@ -177,7 +177,7 @@ button{
 
         <button type="submit">Register</button>
         <div class="register-link m-t-15 text-center">
-            <p>If you are registered ? <a href="{{route('register')}}">Login</a></p>
+            <p>If you are registered ? <a href="{{route('login')}}">Login</a></p>
         </div>
     </form>
 </body>
